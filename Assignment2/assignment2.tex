@@ -5,6 +5,9 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{titling}
+\usepackage{geometry}
+%Seitenränder in schön für Steven
+\geometry{a4paper,left=20mm,right=20mm, top=20mm, bottom=25mm} 
 
 % Schusterjungen und Hurenkinder bestrafen
 \clubpenalty50000
@@ -19,7 +22,7 @@
 	\end{tikzpicture}}
 
 
-\author{Benedikt Hans, Christoph Dollase, Steven Teßendorf}
+\author{Benedikt Hans, Christoph Dollase, Steven Te\ss endorf}
 \setlength{\droptitle}{-10em} % set the title to the top of the page
 \title{ \textbf{Problem Sheet 2}}
 
@@ -32,28 +35,32 @@
  \paragraph{Name the layers of the OSI model starting from the top and their general (most important) functions.}
  \paragraph{answer:}
 \begin{itemize}
-	\item Application layer
-	\begin{itemize}
-		\item common services for the end user
-		\item simple mail transfer protocol
-		\item file transfer
-		\item web surfing
-		\item web chat
-		\item email clients
-		\item network data sharing
-		\item virtual terminals
-		\item various file and data operations 
-	\end{itemize}
-
-	\item Presentation layer
-	\begin{itemize}
-		\item  rarely implemented
-		\item  data encryption / decryption
-		\item  character / string conversion
-		\item  data complression
-		\item  graphic handling
-		\item  also called syntax layer in some cases
-	\end{itemize}
+	\begin{minipage}[t]{0.48\linewidth}
+		\item Application layer
+		\begin{itemize}
+			\item common services for the end user
+			\item simple mail transfer protocol
+			\item file transfer
+			\item web surfing
+			\item web chat
+			\item email clients
+			\item network data sharing
+			\item virtual terminals
+			\item various file and data operations 
+		\end{itemize}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+			\item Presentation layer
+		\begin{itemize}
+			\item  rarely implemented
+			\item  data encryption / decryption
+			\item  character / string conversion
+			\item  data complression
+			\item  graphic handling
+			\item  also called syntax layer in some cases
+		\end{itemize}
+	\end{minipage}\\
 
 	\item Session layer
 	\begin{itemize}
