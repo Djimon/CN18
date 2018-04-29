@@ -1,0 +1,190 @@
+%\documentclass{article}
+\documentclass[a4paper,11pt]{article}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{titling}
+
+% Schusterjungen und Hurenkinder bestrafen
+\clubpenalty50000
+\widowpenalty50000
+\displaywidowpenalty=50000
+
+
+% Buchstaben mit kringel drum: %
+\newcommand*\mycirc[1]{%
+	\begin{tikzpicture}[baseline=(C.base)]
+	\node[draw,circle,inner sep=1pt](C) {#1};
+	\end{tikzpicture}}
+
+
+\author{Benedikt Hans, Christoph Dollase, Steven Teßendorf}
+\setlength{\droptitle}{-10em} % set the title to the top of the page
+\title{ \textbf{Problem Sheet 2}}
+
+
+\setcounter{section}{2} % set assignment number
+\begin{document}	 
+ \maketitle	 
+ 
+ \subsection{OSI model}
+ \paragraph{Name the layers of the OSI model starting from the top and their general (most important) functions.}
+ \paragraph{answer:}
+\begin{itemize}
+	\item Application layer
+	\begin{itemize}
+		\item common services for the end user
+		\item simple mail transfer protocol
+		\item file transfer
+		\item web surfing
+		\item web chat
+		\item email clients
+		\item network data sharing
+		\item virtual terminals
+		\item various file and data operations 
+	\end{itemize}
+
+	\item Presentation layer
+	\begin{itemize}
+		\item  rarely implemented
+		\item  data encryption / decryption
+		\item  character / string conversion
+		\item  data complression
+		\item  graphic handling
+		\item  also called syntax layer in some cases
+	\end{itemize}
+
+	\item Session layer
+	\begin{itemize}
+		\item  rarely implemented
+		\item  manages session by initiating opening \& closing of sessions between end-user application processes
+		\item  controls single or multiple connections for each end-user application
+		\item  directly communicates with presantation and transport layers
+	\end{itemize}
+
+	\item 
+	\begin{itemize}
+		\item  connection-oriented communication
+		\begin{itemize}
+			\item ensures that a robust connection is established before data is exchanged
+		\end{itemize}
+		\item  same order delivery
+		\begin{itemize}
+			\item  ensures that packages are delivered in a strict sequence
+		\end{itemize}
+		\item  data integrity
+		\item  flow control
+		\begin{itemize}
+			\item  buffering if devices at each end of a network have different network capabilities in terms of data throughput 
+		\end{itemize}	
+		\item  traffic control
+		\begin{itemize}
+			\item  speed restrictions \& stuff
+		\end{itemize}	
+		\item  multiplexing
+		\item  byte orientation
+		\begin{itemize}
+			\item if applications prefer to receive byte streams instead of packets 
+		\end{itemize}  
+	\end{itemize}
+
+	\item Network layer
+	\begin{itemize}
+		\item  addressing and routing of packets
+		\item  selects and manages the best logical path for data transfer between nodes
+	\end{itemize}
+
+	\item Data Link layer
+	\begin{itemize}
+		\item  transfer data frames between nodes over a network
+		\item  data frame includes: source / destination addresses, data length, start signal or indicator and other related ethernet information to enhance communication		 
+	\end{itemize}
+
+	\item Physical layer
+	\begin{itemize}
+		\item  modulates process of converting a signal from one form to another to ensure the physical transmission
+		\item  bit-by-bit delivery
+		\item  bit synchronization
+		\item  start-stop signaling and flow control in asynchronous serial communication
+		\item  bit interleaving to improve error correction
+		\item  transmission mode control
+	\end{itemize}
+
+\end{itemize}
+ 
+ \subsection{Path selection}
+ \paragraph{Which layer has the task to select the path/route in a network?}
+ \paragraph{answer:} 
+ $\rightarrow$ Network layer \\
+ Its main responsibility is the data transmission over large distances and between heterogeneous sub-networks. This includes the task of routing, where the layer has to select a path through the network. Routers manage the tables with routing information and choose the best part th the receiver with the help of the addresses. 
+ 
+ \subsection{Overhead}
+ \paragraph{Explain which service type has more overhead: connection-oriented or connection-less-communication?} 
+ \paragraph{answer:} 
+ $\rightarrow$ Connection-oriented\\
+ Communication has more overhead, because sending packets requires more parameters in the header of the packet to ensure the reliable transmission. Connection-less communication has a smaller packet header size, therefore it has less overhead. 
+ 
+ 
+ \subsection{Connection Properties}
+ \paragraph{Explain the terms simplex, duplex and half-duplex. Name an example medium of each type}
+ \paragraph{answer:}
+ \begin{itemize}
+ 	\item Simplex
+ 	 \begin{itemize}
+ 		\item  sends information in one direction only
+ 		\item  ex: pager, sensors, fire detector
+ 	\end{itemize}
+ 
+ 	\item Duplex
+ 	\begin{itemize}
+ 		\item  bidirectional communication system
+ 		\item  allows both end nodes to send and receive communication data or signals, simultaneously and one at a time
+ 		\item  both nodes are able to operate as sender and receiver at the same time
+ 		\item  in this case: sends and receives simulataneously, called 'full duplex'
+ 		\item  ex: Telephone
+ 	\end{itemize}
+ 
+ 	\item Half-Duplex
+ 	\begin{itemize}
+ 		\item  can send or receive, one path at a time
+ 		\item  ex: Walkie-Talkie, partly GSM-Voice connections
+ 	\end{itemize}
+ \end{itemize}
+ 
+  \subsection{Terminology}
+ \paragraph{Explain the terms signal, data and information in the context of computer networks}
+ \paragraph{answer:}
+ \begin{itemize}
+ 	\item Signal
+ 	\begin{itemize}
+ 		\item  analog or digital
+ 		\item  physical representation of data by spatial or timely variation of physical caracteristics
+ 		\item  real physical representation of an abstract representation
+ 	\end{itemize}
+ 
+ 	\item Data
+ 	\begin{itemize}
+ 		\item  information, that has been translated into a form that is efficient for movement or processing
+ 		$\rightarrow$ img slide 8 
+ 	\end{itemize}
+ 
+ 	\item Information
+ 	\begin{itemize}
+ 		\item  information is whatever contributes to a reduction in the uncertainty of the state of a system
+ 		\item  in this case, uncertainty is expressed in an objectively measurable form
+ 		\item  whatever is capable of causing a human mind to change its opinion about the current state of the real world
+ 		\item  only humans can handle information, machines can't
+ 	\end{itemize}
+ \end{itemize}
+ 
+  \subsection{Protocol Overhead}
+ \paragraph{Consider a layered network architecture with n layers. Each protocol on a layer adds a header of h bytes. What fraction of the network bandwidth is lost due to the overhead when m bytes are generated by an application on the top-most layer}
+ \paragraph{answer:}
+
+  \textbf{In PROGRESS....} \\
+  \textit{n layers \\
+ every layer adds an overhead of h bytes $\rightarrow$ ???}
+
+ 
+\end{document}

@@ -1,0 +1,74 @@
+%\documentclass{article}
+\documentclass[a4paper,12pt]{article}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{titling}
+
+% Schusterjungen und Hurenkinder bestrafen
+\clubpenalty50000
+\widowpenalty50000
+\displaywidowpenalty=50000
+
+% Buchstaben mit kringel drum: %
+\newcommand*\mycirc[1]{%
+	\begin{tikzpicture}[baseline=(C.base)]
+	\node[draw,circle,inner sep=1pt](C) {#1};
+	\end{tikzpicture}}
+
+
+\author{Benedikt Hans, Christoph Dollase, Steven Teßendorf}
+\setlength{\droptitle}{-10em} % set the title to the top of the page
+\title{ \textbf{Problem Sheet XXX}}
+
+
+\setcounter{section}{0} % set assignment number XXX
+\begin{document}	 
+ \maketitle	 
+ 
+ \subsection{title}
+ \paragraph{question}
+ \paragraph{answer:}
+ 
+ % Solution
+ 
+ \subsection{title}
+ \paragraph{question}
+ \paragraph{answer:}
+ 
+ % Solution
+ 
+ \subsection{title}
+ \paragraph{question}
+ \paragraph{answer:}
+ 
+ % Solution 
+%add more subsections for more assignment questions..
+\end{document}
+
+% Hier nach passiert nichts mehr, daher nutzen wir das als kleines Cheat-Sheet ;)
+% ===============================================================================
+
+% Aufzählungen (auch merhstufig):
+\begin{itemize}
+	\item 
+\end{itemize}
+
+%Bilder eifnügen:
+\begin{figure}[h!] %h! sorgt dafür dass das Bild möglichst nicht woanders hingeschoben wird
+	%Erklärung: [width=0.5\linewidth] -> Bild ist maximal so breit wie die Hälfte des Schriftbildes
+	\includegraphics[width=0.5\linewidth]{Bildname.jpg} 
+	\caption{Bildunterschrift}
+\end{figure}
+
+%Tabelle einfügen:
+\begin{table}[h!] %h! sorgt dafür dass die Tabelle möglichst nicht woanders hingeschoben wird
+	\caption{Tabellenüberschrift}
+	%hinter {tabular}: Anzahl Spalten (c=center, l=linksbündig, r=rechtsbündig, | Spaltenstriche)
+	\begin{tabular}{|c|c|c} 
+		A & B & C  \\ % \\ = return (neue zeile)
+		\hline % horinzontale Linie
+		0 & 1 & 2
+	\end{tabular}
+\end{table}

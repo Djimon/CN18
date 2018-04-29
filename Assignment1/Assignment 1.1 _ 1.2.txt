@@ -1,0 +1,91 @@
+Problem 1.1: ping and traceroute
+i) 	First, measure the round-trip times using ping. Figure out in which countries these computers reside, too. 
+
+	uni-muenster.de
+		location: Germany
+		round-trip time: ~10 ms (+- 0.5)
+	mit.edu
+		location: Netherlands
+		round-trip time: ~20 ms (+- 5)
+	cam.ac.uk
+		location: United Kingdom
+		round-trip time: 35-40 ms	
+	istanbul.edu.tr
+		location: Turkey
+		round-trip time: turkey doesn't like ping, didn't work :(
+		49 packets transmitted, 0 received, 100% packet loss, time 49152ms
+
+	nsccwx.cn
+		location: China
+		round-trip time: ~300-400 ms
+	ethz.ch
+		location: Switzerland
+		round-trip time: Switzerland is a bitch.
+		45 packets transmitted, 0 received, 100% packet loss, time 45032ms
+
+	uct.ac.za
+		location: South Africa
+		round-trip time: Nope.
+		33 packets transmitted, 0 received, 100% packet loss, time 32759ms
+	spbu.ru
+		location: Russia
+		round-trip time: ~45 ms
+	uq.edu.au
+		location: Australia
+		round-trip time: ~300-400 ms
+	www.uh.cu
+		location: Cuba
+		round-trip time: ~170-250ms
+
+ii) Which of these computers have most latency? Which one has the smallest?
+
+	Smalles latency: Obviously uni-muenster.de
+	Highest latency: nsccwx.cn | uq.edu.au
+
+iii)	One reason for latency is the limited speed of light. The speed of light depends on the medium. For example, in optical fibre it is around 230,000,000 m/s. How long does it take to tracel once around the Equator at this speed?
+
+	40,000km = 40,000,000m
+	40,000,000 / 230,000,000
+	= 0.17391304347s
+	//That's pretty fast tho.
+
+iv) 	Find out how long (in number of "hops") the paths are to these computers with traceroute.
+	uni-muenster.de: 6?
+	mit.edu: 6?
+	cam.ac.uk: 18
+	istanbul.edu.tr: 9?
+	nsccwx.cn: 18?
+	ethz.ch: 12?
+	uct.ac.za: 16?
+	spbu.ru: 11
+	uq.edu.au: 25?
+	www.uh.cu: 13?
+
+	//? bc * * * stuff, unclear af.
+
+Problem 1.2: Communication Principles
+Explain the differences of unicast, multicast, anycast and broadcast transmissions. Give an example application for each transmissions type. Do you know what a geocast is?
+
+	Unicast:
+	Two communication peers communicate over a Point-to-Point connection
+	https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Unicast.svg/100px-Unicast.svg.png
+
+	Multicast:
+	One sender communicates to several receivers, which are known.
+	https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Multicast.svg/100px-Multicast.svg.png
+
+	Broadcast: 
+	One sender transmits to all other peers. 
+	Typically the other peers are (partially) unknown.
+	https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Broadcast.svg/100px-Broadcast.svg.png
+
+	Anycast:
+	One sender transmits to a group of other peers.
+	https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Anycast.svg/100px-Anycast.svg.png
+
+	Geocast:
+	Special form of multicast, one sender transmits to several receivers within a specific location.
+	Uses coordinates in WGS84 as used in, for example, GPS.
+	https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Geocast.svg/100px-Geocast.svg.png
+	
+	 
