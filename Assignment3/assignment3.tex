@@ -1,14 +1,13 @@
 %\documentclass{article}
 \documentclass[a4paper,12pt]{article}
 % Seitenränder in schön für Steven
-%\usepackage{geometry}
-%\geometry{a4paper,left=20mm,right=20mm,top=20mm,bottom=25cm}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
 \usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{titling}
-
+\usepackage{wrapfig}
 
  
 
@@ -40,7 +39,18 @@
  \paragraph{answer:}
  % Solution
  
- coming soon$^{_{TM}}$
+\begin{wrapfigure}{l}{8cm}
+ 	\includegraphics[width=0.8\linewidth]{ascore2017.png}
+ 	\caption{CAIDA's AS Core 2017}
+ \end{wrapfigure}
+ On the given website they measured the transit degree of Autonomous Systems (AS) by performing traceroutes to randomly-chosen destinations all over the world.
+Subsequently they ranked these AS nodes (correspending directly to an Internet Service Provider) by plotting the AS's inverse customer cone size as radius and the geographic longitude as angular cordinate, mapping the nodes to regions.\\
+
+In figure 1 there are some AS nodes which shows a very large number of connections (red area). So it seems as if there is a core of the internet where almost every request is routed through.
+Indeed it should be clear that not every request passes the big nodes. \\
+It depends on how you define a core to deside if you want to call the AS core the "core of the internet" or rather a dominating AS network. 
+
+
  
  \subsection{Reference Models}
  \paragraph{Repeat and discuss the differences in the ISO/OSI and TCP/IP models. Take a look at the session and presentation layer functions of the ISO/OSI model. Where are they implemented in the TCP/IP model? Discuss whether this is a good design decision. }
@@ -53,7 +63,7 @@
  		\item  Application layer in TCP/IP implenents functions from the presentation / session layers in ISO/OSI
  	\end{itemize}
  	\item  Network layer (ISO/OSI) is called Internet layer (TCP/IP)
- 	\item  Data Link layer \& Physical layer are merged in the TCP/IP model, it's called Host\item To\item Network layer
+ 	\item  Data Link layer \& Physical layer are merged in the TCP/IP model, it's called Host-To-Network layer
  	\item  Presentation layer / Session layer are not implemented in the TCP/IP model, they're part of the application layer
  	\item  both implementations aren't perfect
  	\item  TCP/IP came earlier, ISO/OSI was rushed
@@ -67,7 +77,8 @@
  		\caption{Comparison: ISO/OSI vs TCP/IP}
  	\end{center}
  \end{figure}
- 
+
+
  \subsection{Terminology}
  \paragraph{Explain what the terms throughput, goodput and packet delivery ratio describe in the context of computer networks.}
  \paragraph{answer:}
@@ -101,7 +112,7 @@
  \begin{enumerate}[itemsep=0pt]
 	 \item FTP (file transfer)
 	  \begin{itemize}[itemsep=0pt]
-	 	\item bandwidth
+	 	\item bandwidth more important
 	  \end{itemize} 
 	 \item SSH (shell access)
 		\begin{itemize}[itemsep=0pt]
@@ -111,9 +122,9 @@
 	 \begin{itemize}[itemsep=0pt]
 	 	\item bandwith is very important, especially with HD streams
 	 \end{itemize}  
-	 \item Remote controlled emergency shut\item off system
+	 \item Remote controlled emergency shut-off system
 	 \begin{itemize}[itemsep=0pt]
-	 	\item having a low latency and a high bandwith is nice to have
+	 	\item having a low latency is mandatory, a high bandwith is nice to have
 	 \end{itemize}
 	 \item Telemedicine in the surgery
 	 \begin{itemize}[itemsep=0pt]
@@ -125,7 +136,7 @@
 	 \end{itemize}
 	 \item E-Mail
 	 \begin{itemize}[itemsep=0pt]
-	 	\item both are relatively important
+	 	\item both are relatively unimportant
 	 	\item "survives" with a high latency / low bandwidth, e-mails just might take a while to be sent
 	 \end{itemize}
  \end{enumerate}
@@ -143,8 +154,7 @@
  	$\rightarrow$ data gets sent on the lowest level
  	\item  reversed process on the receiving end
  \end{itemize}
- 
- 
+  
  \textbf{Horizontal Communication (Corresponding Layer)}
  \begin{itemize}[itemsep=0pt]
  	\item  each layer has its particular role \item  a set of general tasks for which it is responsible
@@ -153,7 +163,7 @@
  	\item  a software running at layer 5 on one machine can accomplish logical communication with a similar process running at layer 5 on another machine
  	\item  data has to be "passed down" to layer 1 on the sending machine
  	\item  data is transmitted over the physical connection to layer 1 on the other machine
- 	\item  data will be forwarded upward the protocol stack of the receiving machine to layer 5 \\
+ 	\item  data will be "passed up" the protocol stack of the receiving machine to layer 5 \\
  	$\rightarrow$ logical link at layer 5 without having a physical connection at that layer
  	\item  all horizontal communication requires vertical communication
  	\item  down the stack on one machine, back up the stack on the other machine
