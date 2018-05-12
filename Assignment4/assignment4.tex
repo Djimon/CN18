@@ -39,17 +39,17 @@
 \textbf{What is the difference between Baud und Bit/s?}\\
 \\
 \textit{Baud} is a measure comming from telecomunications and is older then the digital measure of Bit/s.
-One Baud means that there has been sent one symbol per second ($1Bd = \frac{symbols}{second}$). The data rate of this symbol depends of the encoding of the signal. If the signal is binary baud is equal to bit/s. But with multilevel signals the conversion differs.\\
+One Baud means that there has been sent one symbol per second ($1Bd = 1\frac{symbols}{second}$). The data rate depends of the encoding of the signal. If the signal is binary baud is equal to bit/s. But with multilevel signals the conversion differs.\\
 \\
 \textbf{A quaternary digital signal has a symbol rate of v = 106 Baud. Is the data rate equal,	smaller or greater than the Symbol rate? Is this allways the case?}\\
 \\
 Like discribed above the data rate depends on the signal. With a quaternary signal (four possible values) the data rate is double as high as the baud measure. \\
-with $n$ being the number of possible values of the signal, the data rate is calculated from: \\
+with $n$ being the number of possible values of the signal, the data rate is calculated as follows: \\
 data rate in bps = $v * log_{2}(n)$ \\
 \\ 
 \textbf{For the given signal, what is the data rate?}\\
 \\
-For $v = 106 Bd$ and a signal with $n=4$ (quaternary):\\
+For $v = 106 Bd$ and a signal with $n=4$ possible values (quaternary):\\
 data rate = $106 * log_{2}(4)$ = $106 * 2$ \\
 data rate = 212 bps
 
@@ -66,10 +66,10 @@ data rate = 212 bps
 		\draw[thick, <->] (0,-2.5) -- (0,2.5);
 		\node [right] at (11,0) {$t$};
 		\node [align=center,above] at (0,2.5) {signal amplitude \\ (in Volt)};
-		\node [left] at (0,2) {$[11]$ 2};
-		\node [left] at (0,1) {$[10]$ 1};
-		\node [left] at (0,-1) {$[01]$ -1};
-		\node [left] at (0,-2) {$[00]$ -2};
+		\node [left] at (0,2) {\textcolor{blue}{$[11]$}  2};
+		\node [left] at (0,1) {\textcolor{blue}{$[10]$}  1};
+		\node [left] at (0,-1) {\textcolor{blue}{$[01]$}  -1};
+		\node [left] at (0,-2) {\textcolor{blue}{$[00]$}  -2};
 		% egentliche Pfad für den Code:
 		% 00 01 10 11 00 11 10 01 10 10
 		% Codierung in Volt:
