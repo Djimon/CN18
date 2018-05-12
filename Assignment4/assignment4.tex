@@ -45,12 +45,12 @@ One Baud means that there has been sent one symbol per second ($1Bd = 1\frac{sym
 \\
 Like discribed above the data rate depends on the signal. With a quaternary signal (four possible values) the data rate is double as high as the baud measure. \\
 with $n$ being the number of possible values of the signal, the data rate is calculated as follows: \\
-data rate in bps = $v * log_{2}(n)$ \\
+data rate in bps = $v \cdot log_{2}(n)$ \\
 \\ 
 \textbf{For the given signal, what is the data rate?}\\
 \\
 For $v = 106 Bd$ and a signal with $n=4$ possible values (quaternary):\\
-data rate = $106 * log_{2}(4)$ = $106 * 2$ \\
+data rate = $106 \cdot log_{2}(4)$ = $106 \cdot 2$ \\
 data rate = 212 bps
 
 
@@ -66,10 +66,10 @@ data rate = 212 bps
 		\draw[thick, <->] (0,-2.5) -- (0,2.5);
 		\node [right] at (11,0) {$t$};
 		\node [align=center,above] at (0,2.5) {signal amplitude \\ (in Volt)};
-		\node [left] at (0,2) {\textcolor{blue}{$[11]$}  2};
-		\node [left] at (0,1) {\textcolor{blue}{$[10]$}  1};
-		\node [left] at (0,-1) {\textcolor{blue}{$[01]$}  -1};
-		\node [left] at (0,-2) {\textcolor{blue}{$[00]$}  -2};
+		\node [left] at (0,2) {\textcolor{blue}{$[11]$}~~ 2};
+		\node [left] at (0,1) {\textcolor{blue}{$[10]$}~~ 1};
+		\node [left] at (0,-1) {\textcolor{blue}{$[01]$}~ -1};
+		\node [left] at (0,-2) {\textcolor{blue}{$[00]$}~ -2};
 		% egentliche Pfad für den Code:
 		% 00 01 10 11 00 11 10 01 10 10
 		% Codierung in Volt:
@@ -98,7 +98,7 @@ data rate = 212 bps
 		\node [align=center,below] at (9.5,-2.5)
 			{\textcolor{blue}{$[10]$} \\ 10 \\2s};
 		\node [align=center, below right] at (0,-4.5)
-			{data rate = $5 * log_{2}(4)$ = $10 bps$ (with baud rate of $5/s$)};
+			{data rate = $5 \cdot log_{2}(4)$ = $10 bps$ (with baud rate of $5/s$)};
 	\end{tikzpicture}
 	\caption{time-voltage-diagram for bit sequence \textcolor{blue}{$[00011011001110011010]$}.}
 	\label{fig:timevoltdia}
