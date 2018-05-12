@@ -38,8 +38,8 @@
 \subsection{Baud}
 \textbf{What is the difference between Baud und Bit/s?}\\
 \\
-\textit{Baud} is a measure comming from telecomunications and is way older then the digital measure of Bit/s.
-One Baud means that there will be sent one symbol per second ($1Bd = \frac{symbols}{second}$). The data rate of this symbol depends of the encoding of the signal. If the signal is binary baud is equal to bit/s. But with multilevel signals the conversion differs.\\
+\textit{Baud} is a measure comming from telecomunications and is older then the digital measure of Bit/s.
+One Baud means that there has been sent one symbol per second ($1Bd = \frac{symbols}{second}$). The data rate of this symbol depends of the encoding of the signal. If the signal is binary baud is equal to bit/s. But with multilevel signals the conversion differs.\\
 \\
 \textbf{A quaternary digital signal has a symbol rate of v = 106 Baud. Is the data rate equal,	smaller or greater than the Symbol rate? Is this allways the case?}\\
 \\
@@ -65,7 +65,7 @@ data rate = 212 bps
 		\draw[thick, ->] (0,0) -- (11,0);
 		\draw[thick, <->] (0,-2.5) -- (0,2.5);
 		\node [right] at (11,0) {$t$};
-		\node [align=center,above] at (0,2.5) {signal steps \\ (in Volt)};
+		\node [align=center,above] at (0,2.5) {signal amplitude \\ (in Volt)};
 		\node [left] at (0,2) {$[11]$ 2};
 		\node [left] at (0,1) {$[10]$ 1};
 		\node [left] at (0,-1) {$[01]$ -1};
@@ -98,7 +98,7 @@ data rate = 212 bps
 		\node [align=center,below] at (9.5,-2.5)
 			{\textcolor{blue}{$[10]$} \\ 10 \\2s};
 		\node [align=center, below right] at (0,-4.5)
-			{data rate = $5 * log_{2}(4)$ = $10 bps$ (with baude rate of $5/s$)};
+			{data rate = $5 * log_{2}(4)$ = $10 bps$ (with baud rate of $5/s$)};
 	\end{tikzpicture}
 	\caption{time-voltage-diagram for bit sequence \textcolor{blue}{$[00011011001110011010]$}.}
 	\label{fig:timevoltdia}
