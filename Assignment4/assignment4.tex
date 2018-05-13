@@ -106,24 +106,70 @@ data rate = 212 bps
 
 	
 \subsection{Channel Bandwidth}
-\textbf{Consider a channel to have a bandwidth of 4 MHz. How many bit per second can be sent if digital signals with 8 levels are used? The channel shall be noiseles}
-
-%SOLUTION HERE!!!	
+\textbf{Consider a channel to have a bandwidth of 4 MHz. How many bit per second can be sent if digital signals with 8 levels are used? The channel shall be noiseles}\\
+\\
+The capacity for a noise free channel with limited bandwith is calculated after the \textit{Nyquist-Theorem} by H. Nyquist (1924):\\
+max. data rate = $2 \cdot B \cdot log_{2}(n)$,\\
+with $B$ as bandwith and $n$ spedifies the levels of the signal.
+\\
+\\
+max. data rate = $2 \cdot 4000~Hz \cdot log_{2}(8)$ = 24000 bps
 	
 \subsection{Signal to Noise Ratio}
-\textbf{A binary signal is sent via a 3 kHz wide channel with a signal to noise ratio of 20 dB. Calculate the maximum data rate.}
-
-%SOLUTION HERE!!!	
+\textbf{A binary signal is sent via a 3 kHz wide channel with a signal to noise ratio of 20 dB. Calculate the maximum data rate.}\\
+\\
+The \textit{Shanon-Theorem} extends the former calculation of the maximum data rate to include random noise. Therefore the signal-to-noise ratio is added to the formula.\\
+max. data rate = $B \cdot log_{2}(1 + SNR)$\\
+SNR = $\frac{signal~power}{noise~power}$\\
+The noise power is mostly given in $dB$ which is the logarithmic variant of the $SNR$: $SNR_{dB}$ = $10 \cdot log_{10}(SNR)$.\\
+\\
+noise ratio of 20 dB means: $SNR_{dB} = 20$, therefore $SNR = 100$.\\
+max. data rate = $3000 \cdot log_{2}(1 +100)$ = 19974,63 bps\\
 
 \subsection{Noiseless channel}
-\textbf{Specify the maximum data rate that can be achieved over a noiseless 4 kHz wide channel.}
-
-%SOLUTION HERE!!!	
+\textbf{Specify the maximum data rate that can be achieved over a noiseless 4 kHz wide channel.}\\
+\\
+The maximum data rate depends on the amoung of levels of the signal. \\
+\begin{tabular}{c|c} \hline
+	\textbf{levels} & \textbf{max data rate} \\ \hline
+	2 & 8000 \\
+	4 & 16000 \\
+	8 & 24000 \\ \hline
+	n & $8000 \cdot log_{2}(n)$ 
+\end{tabular}
 
 \subsection{Base- and Broadband}
-\textbf{Explain the term baseband and broadband. Why do we need broadband communication? Explain how broadband communication of baseband signals is achieved. Give example application scenarios.}
+\textbf{Explain the term baseband and broadband. Why do we need broadband communication?}\\
+\\
+\textit{Baseband}
+\begin{itemize}[itemsep=0pt]
+	\item  the digital information is transmitted over the medium as it is
+	\item  for this, ecoding procedures are necessary, which specify the representation of '0' resp. '1' (cable codes)
+	\item  transmits signals discrete (digital)
+	\item  easier to realize
+\end{itemize}
+~\\
+\textit{Broadband}
+\begin{itemize}[itemsep=0pt]
+	\item  information is transmitted analogous (continues) (larger range) by modulating it onto a carrier signal
+	\item  by the use of different carrier signals (frequencies) several information can be transferred at the same time
+	\item  rarely used
+	\item  advantages in data communications
+	\item  harder to realize
+	\item  used for example by optical networks and radio networks
+\end{itemize}
+~\\
+\textbf{Explain how broadband communication of baseband signals is achieved. Give example application scenarios.}\\
 
-%SOLUTION HERE!!!	
+\begin{itemize}[itemsep=0pt]
+	\item  original signal is approximated continously by considering higher frequencies
+	\item  weakening of the signal
+	\item  signal is going out of shape
+	reasons:
+	\item  higher frequencies are attenuated more than lower frequencies
+	\item  speed in the medium depends on frequency
+	\item  distortion from the environment
+\end{itemize}
 
 
 \end{document}
