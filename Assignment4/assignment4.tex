@@ -130,13 +130,17 @@ max. data rate = $3000 \cdot log_{2}(1 +100)$ = 19974,63 bps\\
 \textbf{Specify the maximum data rate that can be achieved over a noiseless 4 kHz wide channel.}\\
 \\
 The maximum data rate depends on the amoung of levels of the signal. \\
-\begin{tabular}{c|c} \hline
-	\textbf{levels} & \textbf{max data rate} \\ \hline
-	2 & 8000 \\
-	4 & 16000 \\
-	8 & 24000 \\ \hline
-	n & $8000 \cdot log_{2}(n)$ 
-\end{tabular}
+
+\begin{minipage}{0.9\linewidth}
+	\centering
+	\begin{tabular}{|c|c|} \hline
+		\textbf{levels} & \textbf{max data rate} \\ \hline
+		2 & 8000 \\
+		4 & 16000 \\
+		8 & 24000 \\ \hline
+		n & $8000 \cdot log_{2}(n)$ \\ \hline 
+	\end{tabular}
+\end{minipage}
 
 \subsection{Base- and Broadband}
 \textbf{Explain the term baseband and broadband. Why do we need broadband communication?}\\
@@ -163,12 +167,13 @@ The maximum data rate depends on the amoung of levels of the signal. \\
 
 \begin{itemize}[itemsep=0pt]
 	\item  original signal is approximated continously by considering higher frequencies
-	\item  weakening of the signal
-	\item  signal is going out of shape
-	reasons:
-	\item  higher frequencies are attenuated more than lower frequencies
-	\item  speed in the medium depends on frequency
-	\item  distortion from the environment
+	\item  weakening of the signal, signal is going out of shape
+	\item  reasons:
+	\begin{itemize}[itemsep=0pt]
+		\item  higher frequencies are attenuated more than lower frequencies
+		\item  speed in the medium depends on frequency
+		\item  distortion from the environment
+	\end{itemize}
 \end{itemize}
 
 
