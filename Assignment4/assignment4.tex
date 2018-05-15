@@ -23,7 +23,7 @@
 	\node[draw,circle,inner sep=1pt](C) {#1};
 	\end{tikzpicture}}
 
-\author{Benedikt Hans, Christoph Dollase, Steven Te\ss endorf}
+\author{Benedict Hans, Christoph Dollase, Steven Te\ss endorf}
 \setlength{\droptitle}{-5em} % set the title to the top of the page
 
 % ==========================
@@ -52,7 +52,6 @@ data rate in bps = $v \cdot log_{2}(n)$ \\
 For $v = 106 Bd$ and a signal with $n=4$ possible values (quaternary):\\
 data rate = $106 \cdot log_{2}(4)$ = $106 \cdot 2$ \\
 data rate = 212 bps
-
 
 \subsection{Multilevel Signals}
 \textbf{Represent the following sequence of bits as a quaternary signal with a baud rate of 5/s in a time-voltage-diagram: 00011011001110011010. Determine the bitrate.} See figure \ref{fig:timevoltdia}.
@@ -112,8 +111,9 @@ The capacity for a noise free channel with limited bandwith is calculated after 
 max. data rate = $2 \cdot B \cdot log_{2}(n)$,\\
 with $B$ as bandwith and $n$ spedifies the levels of the signal.
 \\
+max. data rate = $2 \cdot 4.000.000~Hz \cdot log_{2}(8)$ = 24 Mbps\\
 \\
-max. data rate = $2 \cdot 4000~Hz \cdot log_{2}(8)$ = 24000 bps
+\textcolor{red}{Shanon würde gegen unendlich gehen, wenn der Kanal rauschfrei ist.}
 	
 \subsection{Signal to Noise Ratio}
 \textbf{A binary signal is sent via a 3 kHz wide channel with a signal to noise ratio of 20 dB. Calculate the maximum data rate.}\\
@@ -125,6 +125,10 @@ The noise power is mostly given in $dB$ which is the logarithmic variant of the 
 \\
 noise ratio of 20 dB means: $SNR_{dB} = 20$, therefore $SNR = 100$.\\
 max. data rate = $3000 \cdot log_{2}(1 +100)$ = 19974,63 bps\\
+\\
+\textcolor{red}{Es gelten immer beide Shanon und Nyquist: "der mit dem geringeren Wert gewinnt" -Uebungsleiter.
+	Nyquist: $2 \cdot 3000 \cdot log_{2}(2)$ = 6000bps\\
+	6000bps $<$ 19974,63 $\rightarrow$ 6000bps ist die richtige Loesung}
 
 \subsection{Noiseless channel}
 \textbf{Specify the maximum data rate that can be achieved over a noiseless 4 kHz wide channel.}\\
@@ -152,6 +156,7 @@ The maximum data rate depends on the amoung of levels of the signal. \\
 	\item  transmits signals discrete (digital)
 	\item  easier to realize
 \end{itemize}
+\textcolor{red}{unmoduliertes Signal, z.B. Morsen durch Klopfen, oder das normale Sprechen (zw. 3Hz und 44kHz)}\\
 ~\\
 \textit{Broadband}
 \begin{itemize}[itemsep=0pt]
@@ -175,6 +180,7 @@ The maximum data rate depends on the amoung of levels of the signal. \\
 		\item  distortion from the environment
 	\end{itemize}
 \end{itemize}
+\textcolor{red}{Bsp. Radio - Frequnz einstellen: Baseband(Musik) wird auf elektromagnetisches Signal(Radio-Funk) geleitet und vom Radiogerät wieder zurückmoduliert}
 
 
 \end{document}
