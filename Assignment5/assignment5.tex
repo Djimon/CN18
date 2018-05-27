@@ -264,13 +264,14 @@ Noise is an unwanted effect influencing and modificating the signal during trans
 	\item noise
 	\item Crosstalk
 	\item Impulse noise
+    \item \textcolor{red}{Quantization Noise}
 \end{itemize}
 \\
 Attenuation is a feature of the medium where the signal is transfered and defines how much of the signal absorbed by the medium. So Attenuation affects the strength of the signal.
 
 \pagebreak
 \subsection{(Differential) Manchester}
-\textbf{onsider you have measured the following signal \textit{(see assignment sheet)}.\\
+\textbf{Consider you have measured the following signal \textit{(see assignment sheet)}.\\
 The vertical lines represent the end of a bit.  Specify the bit sequence that is encoded in the signal considering that it was encoded with: Manchester baseband encoding and Differential Manchester. Can the bit sequences be specified unambiguously?}
 
 \begin{enumerate}[itemsep=0pt]
@@ -285,6 +286,8 @@ The vertical lines represent the end of a bit.  Specify the bit sequence that is
 \end{enumerate}
 \\
 As you can see above there are some constellations where (1) and (2) encode the same bits, for example the first 4 bits.
+\\
+\textcolor{red}{We cannot say for sure if the first bit is a zero in Differential Manchestter}
 	
 \subsection{Wireless Transmission}
 \textbf{Consider the electromagnetic spectrum presented in the lecture slides. If you had to transmit signals  with  a  given  bandwidth, an appropriate frequency band has to be found. Frequency bands are subject to legal regulation, and also they have distinct physical properties. As a result, signals have to reside within a single frequency band and cannot be spread over several bands.}\\
@@ -292,6 +295,7 @@ As you can see above there are some constellations where (1) and (2) encode the 
 \textbf{Say you need to transmit a signal of 20 MHz bandwidth. Can you send it in the electromagnetic base band?}\\
 \\
 yes, there are several bands available in the electromagnetic base band to transmit a 20MHz signal\\
+\textcolor{red} {It is not possible in the lower frequencies because it would overlap with different bands}\\
 \\
 \textbf{Can you send it within the Medium Frequency (MF) band?}\\
 \\
@@ -300,12 +304,14 @@ No, because the MF-band resides within the $10^6$ Hz range and 20MHz exceed this
 \textbf{WiFi (IEEE 802.11) specifies channels with 20 MHz bandwidth, so you could use it to send your signal. In which band(s) does it operate?}\\
 \\
 It operates in the UHF band. More specifically at 2.4GHz and 5 GHz. The standard define a bandwidth of 20MHz both for 2.4GHz and 5GHz frequencies\\
+\textcolor{red}{Nowadays there is also a 60GHz WiFi Band}
 \\
 \textbf{The ELF band has very interesting physical properties: You can send signals around the world  without needing much energy.  What kind  of data rate could you achieve in this  band (roughly) with a binary signal?}\\
 \\
 Depends on the Definition of ELF. One is 3-30 Hz the other is 3-3000Hz.
 So approximately it would be around (given we use the higher frequency)
--Nyquist: ~6000 bps
+-Nyquist: ~6000 bps\\
+\textcolor{red}{We have 3-30Hz. With a bandwidth of 1 Hz we would just have 2bps. Not very useful!}
 
 
 \subsection{Modulation}
