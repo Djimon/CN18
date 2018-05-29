@@ -44,10 +44,40 @@
 	modulation diagram. Specify the (de-)modulation table for the applied (de-)modulation scheme.
 	Sketch the corresponding constellation diagram.}
 
-    \begin{figure}[h!] 
-        \includegraphics[width=1\linewidth]{mod_solution.png} 
-	    \caption{Table and constellation diagram}
-    \end{figure}
+%    \begin{figure}[h!] 
+%        \includegraphics[width=1\linewidth]{mod_solution.png}
+%	    \caption{Table and constellation diagram}
+%    \end{figure}
+
+\begin{figure}[h!]
+	\begin{minipage}{0.48\linewidth}
+			\begin{tabular}{|c|c|c|}\hline
+				\textbf{Symbol} & \textbf{Amplitude} & \textbf{Phase Shift} \\ \hline
+				$[00]$ & 1 & $\pi$ \\
+				$[01]$ & 2 & \textcolor{red}{$\pi$} \\
+				$[10]$ & 2 & \textcolor{red}{0} \\
+				$[11]$ & 1 & 0 \\ \hline
+			\end{tabular}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.48\linewidth}
+			\begin{tikzpicture}
+			\draw[line width=1pt, ->] (0,-1) -- (0,1);
+			\draw[line width=1pt, ->] (-2.5,0) -- (2.5,0);
+			\node[align=center] at (-2,0) {$\circ$};
+			\node[align=center, below] at (-2,0) {$[01]$};
+			\node[align=center] at (-1,0) {$\circ$};
+			\node[align=center, below] at (-1,0) {$[00]$};
+			\node[align=center] at (1,0) {$\circ$};
+			\node[align=center, below] at (1,0) {$[11]$};
+			\node[align=center] at (2,0) {$\circ$};
+			\node[align=center, below] at (2,0) {$[10]$};
+			\end{tikzpicture}
+	\end{minipage}
+	\caption{Modulation table and constellation diagram}
+\end{figure}
+
+	\textcolor{red}{\textbf{Hier hat er noch ganz viel erkl\"art, das habe ich aber vers\"aumt, weil ich tabelle und diagram in tex bringen wollte. Also in eurer \"Ubung hierzu evtl gut bei den Erkl\"arungen aufpassen.}}
 	
 	\newpage
 	
@@ -55,10 +85,23 @@
 	\textbf{Modulate the bit sequence 100101111001 using a combination of amplitude and frequency
 	shift keying. Each symbol shall be modulated for 1/2 T time units on the sine carrier wave.
 	Use the information table in the assignment sheet.}
-	
+
+
     \begin{figure}[h!] 
-        \includegraphics[width=1\linewidth]{mod_solution2.png} 
-	    \caption{Modultiongraph}
+	    \begin{minipage}{0.25\linewidth}
+	    	\begin{tabular}{|c|c|c|}\hline
+	    		\textbf{Symbol} & \textbf{F} & \textbf{A} \\ \hline
+	    		$[00]$ & f & 1 \\
+	    		$[01]$ & f & 2 \\
+	    		$[10]$ & 2f & 1 \\
+	    		$[11]$ & 2f & 2 \\ \hline
+	    	\end{tabular}
+	    \end{minipage}
+	    \hfill
+    	\begin{minipage}{0.74\linewidth}
+    		\includegraphics[width=1\linewidth]{modulation3.jpg}
+    	\end{minipage} 
+	    \caption{Modulation table and modultion graph}
     \end{figure}
 	
 	% Solution
@@ -89,6 +132,8 @@
 			\item Data rate depends on distance to the switching center and the cable quality
 			\item Discrete Multitone Modulation (DMT) or Carrierless Amplitude Phase Modulation (CAP)
 		\end{itemize}
+		\item \textcolor{red}{Coaxial-Kabel (aktuelles "Breitband-Netz")}
+		\item \textcolor{red}{Funk und LTE} 
 	\end{itemize}
 	
 	\subsection{Transmission Time}
@@ -104,18 +149,18 @@
 		\item \textbf{A signal in the electromagnetic short wave band may have the physical properties to travel this distance within this time.  However, channel bandwidth and thus baud rate are very much limited.  Assume you were granted access to a 20 kHz channel in this band. Expect a signal-to-noise ratio of -13.5 dB. What a bit rate could you achieve?}
 		\begin{itemize}
 			\item Shanon: noise ratio of -13.5 $dB$ $\rightarrow$ $SNR = 0.04467$ (noise > signal)\\
-			$data~rate = 20.000 \cdot log_2( 1+ 0.04467) = 1,26 ~bit/s$
+			$data~rate = 20.000 \cdot log_2( 1+ 0.04467) = 1261 ~bit/s$
 		\end{itemize}
 		\item \textbf{Let us try encoding a message for the application. For buying stocks (identified by a 4-digit name), we only need a short message format, for example:  {\large BUY 2000 DJIA}\\
 		How long does it take to transmit this message? Assume ASCII encoding and the bitrate you have calculated.}
 		\begin{itemize}
 			\item $[BUY~2000~DJIA]_{lit} = [66~85~89~\textcolor{blue}{32}~50~48~48~48~\textcolor{blue}{32}~68~74~73~65]_{ascii}$ (13 symbols)
 			\item ASCII is encoded via 8 bit per symbol $\rightarrow$ $13 \cdot 8 = 104$ Bits to transport
-			\item $t = \frac{104}{1,26} = 82.54~s$
+			\item $t = \frac{104}{1261} = 0,825~s$ = 82,5 $ms$
 		\end{itemize}
 		\item \textbf{Would the short wave transmission be faster than the internet transmission?}
 		\begin{itemize}
-			\item the typical short wave transmission uses frequencies between  1.7-30 $MHz$  $\rightarrow$ it is 80-1500 times faster the given 20 $kHz$ channel.
+			\item 21,3 ms (transport) + 82,5 ms (receive)  $>$ 100 ms (given latence for transatlantic data transport) $\rightarrow$ internet is faster than short wave
 		\end{itemize}
 	\end{enumerate}
 	
