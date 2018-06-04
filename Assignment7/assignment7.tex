@@ -8,7 +8,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{titling}
-
+\usepackage{ amssymb }
 
 % Schusterjungen und Hurenkinder bestrafen
 \clubpenalty50000
@@ -21,34 +21,125 @@
 	\node[draw,circle,inner sep=1pt](C) {#1};
 	\end{tikzpicture}}
 
+
 \author{Benedict Hans, Christoph Dollase, Steven Te\ss endorf}
 \setlength{\droptitle}{-5em} % set the title to the top of the page
 
 % ==========================
 % ===== START HERE!! =======
 % ==========================
-\title{ \textbf{Problem Sheet 0}}
-\setcounter{section}{0} % Nummer des Aufgabenblattes
+\title{ \textbf{Problem Sheet 7}}
+\setcounter{section}{7} % Nummer des Aufgabenblattes
 
 \begin{document}	 
 	\maketitle	 %Some Vodoo-magic
 	
-	\subsection{title}
-	\textbf{question}
+	\subsection{Flow Control}
+	\textbf{Repeat and discuss the task of flow control}
+	
+	\begin{itemize}
+		\item How to prevent a slow receiver swamped?
+		\item Feedback-based flow control
+		\begin{itemize}
+			\item Receiver sends back information to the sender giving permission to send more data
+		\end{itemize}
+		\item Rate-based flow control
+		\begin{itemize}
+			\item Protocol limits the rate of data a sender may transmit without feedback from the 
+			receiver
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{Transmission Errors}
+	\textbf{In some layer 2 protocols, the Data Link Layer requests damaged frames to be send again by the sender. Assume that the probability of a frame to be damaged is $p$, and that acknowledgements are never lost.  How often has a frame to be transmitted on average?}
+	
 	
 	% Solution
 	
-	\subsection{title}
-	\textbf{question}
+	\subsection{Error correction by parity}
+	\textbf{One simple mechanism for correcting errors is to send data blockwise, with	$n$ rows and $k$ bit per row, adding one parity bit to each column and one each row (double parity).  Can this code correct every possible single-bit error? How about two-bit burst errors?}
+	
+	\begin{figure}[h!]
+		\begin{minipage}{0.3\linewidth}
+			\textbf{transmitter}\\
+			\begin{tabular}{c|c}
+				 bits & parity bit \\ \hline
+				 1011 & 1 \\
+				 0100 & 1 \\
+				 1001 & 0 \\
+				 0101 & 0 \\ \hline
+				 \textcolor{blue}{0011} & \\ 
+			\end{tabular}
+		\end{minipage}
+	\hfill
+	\begin{minipage}{0.3\linewidth}
+		\textbf{receiver}\\
+		\begin{tabular}{c|c}
+			bits & parity bit \\ \hline
+			\textcolor{pink}{10\textcolor{red}{0}1} & \textcolor{pink}{1} \textcolor{green}{\checkmark} \\
+			\textcolor{pink}{01\textcolor{red}{1}0} & \textcolor{pink}{1} \textcolor{green}{\checkmark} \\
+			00\textcolor{orange}{1}1 & 0 \textcolor{red}{$\times$} \\
+			01\textcolor{orange}{0}1 & 0 ~~ \\ \hline
+			\textcolor{blue}{00\textcolor{orange}{1}1} & \\ 
+		\end{tabular}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.36\linewidth}
+		the double-parity helps only if there is one error. if there are errors that interfere each other such as they make the parity bit correct, it's imposssible to detect the error
+	\end{minipage}
+
+	\end{figure}
+	
+	\subsection{Cyclic Redundancy Checksum}
+	\textbf{Determine if the following bit sequences have been transmitted error-free.  Use the generator polynomial G	to apply a CRC check. If you find an error in a bit sequence,  assume that the checksum bits contain the error. Recalculate the checksum\\}
+		
+	\begin{figure}[h!]
+		\begin{minipage}{0.49\linewidth}
+			\centering
+			\begin{tabular}{c|l}\hline
+				~ & Data + CRC \\ \hline
+				1. & 0111 0110 0010 \\
+				2. & 0101 0010 1001 \\
+				3. & 1111 0110 1100 \\ \hline
+			\end{tabular}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.49\linewidth}
+			\begin{equation*}
+			G(x) = x^4 + x + 1		
+			\end{equation*}
+		\end{minipage}	
+	\end{figure}.
+
+
+		$\rightarrow$	$G(x) = \textcolor{blue}{1}x^4 + \textcolor{blue}{0}x^3 + \textcolor{blue}{0}x^2 + \textcolor{blue}{1}x^1 + \textcolor{blue}{1}x^0$
+
+	$\rightarrow$ 10011 
+	\begin{table}[h!]
+		\begin{tabular}{c|c|c|l}\hline
+			~ & Data + CRC & (Data + CRC) : 10011 & result \\ \hline
+			1. & 0111 0110 0010 & 000000 & no error \\
+			2. & 0101 0010 1001 & 0001101 & error \\
+			3. & 1111 0110 1100 & 0000000 & no error\\ \hline
+			\multicolumn{3}{2}{recalculate checksum for 2.} \\ \hline
+			2. & 0101 0010 0000 & 0000100 & error \\
+		\end{tabular}
+	\end{table}
 	
 	
-	% Solution
-	
-	\subsection{title}
-	\textbf{question}
-	
-	
-	% Solution 
+	\subsection{Bit Stuffing}
+	\begin{enumerate}[label=(\roman*),itemsep=0pt]
+		\item \textbf{Frame the following bit sequence with bit stuffing. Use the framing pattern 011110 on $0011~0111~0111~1011~1111$}
+		\begin{itemize}
+			\item % SOLUTION
+		\end{itemize}
+		\item \textbf{Undo the framing in the following bit sequence using the same framing pattern. $0111~1000~ 1100~ 0111~ 1011~ 1010~ 1111~ 0100~ 0001~ 1001~ 1110$}
+		\begin{itemize}
+			\item % SOLUTION
+		\end{itemize}
+	\end{enumerate}
+
+
 \end{document}
 
 % Hier nach passiert nichts mehr, daher nutzen wir das als kleines Cheat-Sheet ;)
