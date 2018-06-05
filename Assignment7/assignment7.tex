@@ -8,7 +8,12 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{titling}
-\usepackage{ amssymb }
+\usepackage{amssymb}
+\usepackage{caption}
+
+
+\captionsetup{justification   = raggedright,
+	singlelinecheck = false}
 
 % Schusterjungen und Hurenkinder bestrafen
 \clubpenalty50000
@@ -52,10 +57,21 @@
 	\end{itemize}
 	
 	\subsection{Transmission Errors}
-	\textbf{In some layer 2 protocols, the Data Link Layer requests damaged frames to be send again by the sender. Assume that the probability of a frame to be damaged is $p$, and that acknowledgements are never lost.  How often has a frame to be transmitted on average?}
+	\textbf{In some layer 2 protocols, the Data Link Layer requests damaged frames to be send again by the sender. Assume that the probability of a frame to be damaged is $p$, and that acknowledgements are never lost.  How often has a frame to be transmitted on average?}\\
+	\\
+	%\textit{$comming~ soon^{_{TM}}$}
+	\textcolor{red}{x is number of not damaged frames ~~~~~~
+	$E(x) = 1 = n \cdot (1-p) \rightarrow n = \frac{1}{n-p}$	
+	}
 	
-	\textit{$comming~ soon^{_{TM}}$}
-	% Solution
+%	----- komplizierte Übungsleiterlösung ------
+%	p_i ..... W'keit für i Transmissions
+%	avr ...Summe_i (i*p_i)
+%	p_i ...p^(i-1) * (1-p)
+%	(1-p) * summe_i (i*p^(i-1))   -> unendliche Reihe
+%	(1-p)/p * Summe_i (i * p^(i)) -> Reihe nachgucken
+%	(1-p)/p * p/(1-p)^2
+	
 	
 	\subsection{Error correction by parity}
 	\textbf{One simple mechanism for correcting errors is to send data blockwise, with	$n$ rows and $k$ bit per row, adding one parity bit to each column and one each row (double parity).  Can this code correct every possible single-bit error? How about two-bit burst errors?}
@@ -67,9 +83,9 @@
 				 bits & parity bit \\ \hline
 				 1011 & 1 \\
 				 0100 & 1 \\
-				 1001 & 0 \\
-				 0101 & 0 \\ \hline
-				 \textcolor{blue}{0011} & \\ 
+				 1101 & 0 \\
+				 0111 & 0 \\ \hline
+				 \textcolor{blue}{0101} & \\ 
 			\end{tabular}
 		\end{minipage}
 	\hfill
@@ -79,8 +95,8 @@
 			bits & parity bit \\ \hline
 			\textcolor{pink}{10\textcolor{red}{0}1} & \textcolor{pink}{1} \textcolor{green}{\checkmark} \\
 			\textcolor{pink}{01\textcolor{red}{1}0} & \textcolor{pink}{1} \textcolor{green}{\checkmark} \\
-			00\textcolor{orange}{1}1 & 0 \textcolor{red}{$\times$} \\
-			01\textcolor{orange}{0}1 & 0 ~~ \\ \hline
+			1\textcolor{orange}{01}1 & 0 \textcolor{red}{$\times$} \\
+			01\textcolor{orange}{1}1 & 0 ~~ \\ \hline
 			\textcolor{blue}{00\textcolor{orange}{1}1} & \\ 
 		\end{tabular}
 	\end{minipage}
@@ -89,8 +105,10 @@
 		the double-parity helps only if there is one error per row. if there are errors that interfere each other such as the parity bit isn't affected, it's imposssible to detect the error.\\
 		(\textcolor{green}{\checkmark} = found error; \textcolor{red}{$\times$} = error not found)
 	\end{minipage}
-
 	\end{figure}
+	
+	\textcolor{red}{2-bit-burst Fehler kommen recht häufig vor. (2 aufeinanderfolgenden Bits kippen)}
+	\pagebreak
 	
 	\subsection{Cyclic Redundancy Checksum}
 	\textbf{Determine if the following bit sequences have been transmitted error-free.  Use the generator polynomial G	to apply a CRC check. If you find an error in a bit sequence,  assume that the checksum bits contain the error. Recalculate the checksum\\}
@@ -114,29 +132,37 @@
 	\end{figure}.
 \\
 	$\rightarrow$	$G(x) = \textcolor{blue}{1}x^4 + \textcolor{blue}{0}x^3 + \textcolor{blue}{0}x^2 + \textcolor{blue}{1}x^1 + \textcolor{blue}{1}x^0$ \\
-	$\rightarrow$ 10011 
+	$\rightarrow$ 10011\\
+	\textcolor{red}{Polynom-Division mit Bits $\rightarrow$ XOR\\
+	Datenwort : G ergibt Rest, diesen Rest h\"ange ich ans Datenword ran. Dann ist das Wort ohne Rest durch G teilbar. Falls Bits gekippt sind, bleibt ein Rest. \\
+	Grad des Polynoms (hier 4) bestimmt die Anzahl der Pr\"ufbits}
 	
 	\begin{table}[h!]
+		\caption{Calculation Rest of (Data + CRC) : 10011}
 		\begin{tabular}{c|c|c|l}\hline
-			~ & Data + CRC & (Data + CRC) : 10011 & result \\ \hline
-			1. & 0111 0110 0010 & 000000 & no error \\
-			2. & 0101 0010 1001 & 0001101 & error \\
-			3. & 1111 0110 1100 & 0000000 & no error\\ \hline
-			\multicolumn{3}{1}{recalculate checksum for 2.} \\ \hline
-			2. & 0101 0010 0000 & 0000100 & error \\
+			~ & Data + CRC & Rest & result \\ \hline
+			1. & 0111 0110 0010 & 0000 & no error \\
+			2. & 0101 0010 1001 & 1101 & error \\
+			3. & 1111 0110 1100 & 0000 & no error\\ \hline
+			\multicolumn{4}{c}{recalculate checksum for 2 (replace CRC with 0)}  \\ \hline
+			2. & 0101 0010 \textcolor{orange}{0000} & \textcolor{green}{0100} & CRC-calculation \\
+			2. & 0101 0010 \textcolor{green}{0100} & 0000 & no error 
 		\end{tabular}
-	\end{table}
+	\end{table} 
 	
 	
 	\subsection{Bit Stuffing}
 	\begin{enumerate}[label=(\roman*),itemsep=0pt]
 		\item \textbf{Frame the following bit sequence with bit stuffing. Use the framing pattern 011110 on $0011~0111~0111~1011~1111$}
 		\begin{itemize}
-			\item \textit{$comming~ soon^{_{TM}}$}
+			\item \textcolor{red}{Bei einigen Kodierungen muss Start/Ende markiert werden, da kein Singal auch eine Reihe von 0 bedeuten kann. Man definiert sich ein Start-Pattern, welches so in den Nutzdaten nicht vorkommen darf (\textcolor{green}{011110})}
+			\item \textcolor{red}{Falls das Pattern in Nutzdaten vorkommt $\rightarrow$ \textcolor{blue}{0} einf\"ugen [1110111] um zu dekodieren ob es eingefügt wurde oder wirklicj [1110] ist, wird da ebenfalls eine \textcolor{blue}{0} eingefügt [11100], etc.}
+			\item \textcolor{red}{Lösung: [\textcolor{green}{0111 10}00 1101 11\textcolor{blue}{0}0 111\textcolor{blue}{0} 1011 1\textcolor{blue}{0}11 1\textcolor{blue}{0}\textcolor{green}{01 1110}]}
 		\end{itemize}
 		\item \textbf{Undo the framing in the following bit sequence using the same framing pattern. $0111~1000~ 1100~ 0111~ 1011~ 1010~ 1111~ 0100~ 0001~ 1001~ 1110$}
 		\begin{itemize}
-			\item \textit{$comming~ soon^{_{TM}}$}
+			\item \textcolor{red}{old: [\textcolor{green}{0111 10}00 1100 \textcolor{green}{0111 10}11 1\textcolor{blue}{0}1\textcolor{green}{0 111 0}100 0001 10\textcolor{green}{01 1110}]}
+			\item \textcolor{red}{decoded: [0011 0011 1110 0000 0110]}
 		\end{itemize}
 	\end{enumerate}
 
