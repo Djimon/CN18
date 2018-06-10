@@ -1,0 +1,140 @@
+%\documentclass{article}
+\documentclass[a4paper,12pt]{article}
+% Seitenränder in schön für Steven
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{titling}
+\usepackage{setspace}
+
+
+% Schusterjungen und Hurenkinder bestrafen
+\clubpenalty50000
+\widowpenalty50000
+\displaywidowpenalty=50000
+
+% Buchstaben mit kringel drum: %
+\newcommand*\mycirc[1]{%
+	\begin{tikzpicture}[baseline=(C.base)]
+	\node[draw,circle,inner sep=1pt](C) {#1};
+	\end{tikzpicture}}
+
+\author{Benedict Hans, Christoph Dollase, Steven Te\ss endorf}
+\setlength{\droptitle}{-5em} % set the title to the top of the page
+
+% ==========================
+% ===== START HERE!! =======
+% ==========================
+\title{ \textbf{Problem Sheet 8}}
+\setcounter{section}{8} % Nummer des Aufgabenblattes
+
+\begin{document}	 
+	\maketitle	 %Some Vodoo-magic
+	
+	\subsection{Hamming Codes}
+	\textbf{Assume you have to transmit messages of 256 bit length over a lossy channel, with a bit error probability of 0.1 \%, i.e.  every bit has a 1/1000 chance to flip}
+	\begin{enumerate}[label=(\roman*),itemsep=0pt]
+		\item \textbf{What is the propability for a correct transmission of 256 bits (without any error correction mechanism)?}
+		\begin{itemize}[itemsep=0pt]
+			\item comming $soon^{_{TM}}$
+		\end{itemize}
+		\item \textbf{Assume you apply a Hamming Code to correct transmission errors. How many parity bits do you append to the message?  What is the resulting message length?}
+		\begin{itemize}[itemsep=0pt]
+			\item comming $soon^{_{TM}}$
+		\end{itemize}
+		\item \textbf{What is the propability of a correct transmission now?}
+		\begin{itemize}[itemsep=0pt]
+			\item comming $soon^{_{TM}}$
+		\end{itemize}
+	\end{enumerate}
+	
+	% Solution
+	
+	\subsection{Hamming-Code}
+	\textbf{wo entities have agreed to use the following encoding to transmit characters}
+	\begin{enumerate}[itemsep=0pt]
+		\item \textbf{How many check bits are requigray to correct all 1-bit errors in messages with a length of m bits?}
+		\begin{itemize}[itemsep=0pt]
+			\item comming $soon^{_{TM}}$
+		\end{itemize}
+		\item \textbf{A Hamming Code with 4 check bits shall be used in the following.  Create the code words which represent the word HAMMING.}
+		\begin{itemize}[itemsep=0pt]
+			\item comming $soon^{_{TM}}$
+		\end{itemize}
+		\item \textbf{Consider the following code words have been received:	\\
+		\textcolor{blue}{$[010101000~ 111001000~ 010101001~ 001011000~ 111111100~ 001001100]$} 
+		Decode  this  sequence,  mark  the  blocks  that  contain  an  error,  and  correct  the  errors  if possible.}
+		\begin{itemize}[itemsep=0pt]
+			\item comming $soon^{_{TM}}$
+		\end{itemize}
+	\end{enumerate}
+	
+	
+	% Solution
+	
+	\subsection{Efficiency of Stop-and-Wait}
+	\textbf{Assume a channel with a bit rate of 1 Mbps and a delay of 20 ms.  A Stop-and-Wait protocol is used which unfortunately introduces waiting times and thus a low efficiency.  The efficiency is dependent on the size of the frames.  Determine the frame size for which the efficiency is 50\%.}\\
+	
+	\begin{itemize}[itemsep=0pt]
+		\item with the use of the Stop-and-Wait protocol there os only one frame on the line at a time
+		\item an acknowledgement has to arrive before the next frame is sent
+		\item we need to assume that
+		\begin{itemize}[itemsep=0pt]
+			\item processing times are negligible 
+			\item acknowledgements are always piggybacked
+			\item packets in both directions have the same size
+		\end{itemize}
+	\end{itemize}
+
+	\begin{doublespace}
+		$efficiency = \frac{length}{(length + bitrate \cdot RTT)} $ , RTT = round trip time\\
+		$\rightarrow 0.5 = \frac{length}{(length + 10^6 [bps]  \cdot  40 \cdot 10^{-3})} $ \\
+		$\rightarrow 0.5 = \frac{length}{(length + 40 \cdot 10^3)}$ \\
+		$\rightarrow length = 40 \cdot 10^3 bits$
+	\end{doublespace}
+	% Solution 
+	
+	\subsection{Timers}
+	\textbf{Explain the problem that is solved by timers. How can timers be implemented in software?}\\
+	\\
+	It is much easier to implement timeout functions etc.\\
+	Some protocols require many timers, but only a couple hardware timers exist
+	\begin{itemize}[itemsep=0pt]
+		\item implement timers in software by using one hardware timer
+		\item store expiration times in a linked list and update it during protocol time
+		\item see slide 04.81 
+	\end{itemize}
+	
+	%Solution
+	
+	
+\end{document}
+
+% Hier nach passiert nichts mehr, daher nutzen wir das als kleines Cheat-Sheet ;)
+% ===============================================================================
+
+% Aufzählungen (auch merhstufig):
+\begin{itemize}[itemsep=0pt]
+	\item 
+\end{itemize}
+
+%Bilder eifnügen:
+\begin{figure}[h!] %h! sorgt dafür dass das Bild möglichst nicht woanders hingeschoben wird
+	%Erklärung: [width=0.5\linewidth] -> Bild ist maximal so breit wie die Hälfte des Schriftbildes
+	\includegraphics[width=0.5\linewidth]{Bildname.jpg} 
+	\caption{Bildunterschrift}
+\end{figure}
+
+%Tabelle einfügen:
+\begin{table}[h!] %h! sorgt dafür dass die Tabelle möglichst nicht woanders hingeschoben wird
+	\caption{Tabellenüberschrift}
+	%hinter {tabular}: Anzahl Spalten (c=center, l=linksbündig, r=rechtsbündig, | Spaltenstriche)
+	\begin{tabular}{|c|c|c} 
+		A & B & C  \\ % \\ = return (neue zeile)
+		\hline % horinzontale Linie
+		0 & 1 & 2
+	\end{tabular}
+\end{table}
