@@ -39,31 +39,54 @@
 	\begin{enumerate}[label=(\roman*),itemsep=0pt]
 		\item \textbf{What is the propability for a correct transmission of 256 bits (without any error correction mechanism)?}
 		\begin{itemize}[itemsep=0pt]
-			\item comming $soon^{_{TM}}$
+			\item $1 - (256 \cdot 0.1\%) = 1 - 0,256 = 0,744 \rightarrow  74,4\%$
 		\end{itemize}
 		\item \textbf{Assume you apply a Hamming Code to correct transmission errors. How many parity bits do you append to the message?  What is the resulting message length?}
 		\begin{itemize}[itemsep=0pt]
-			\item comming $soon^{_{TM}}$
+			\item n = 256 (data bits) : $n = 2^k - k - 1$ , with k=8 only 247, add parity bit
+			\item k = 9 (parity bits)
+			\item N = 265 (message bits)
 		\end{itemize}
 		\item \textbf{What is the propability of a correct transmission now?}
 		\begin{itemize}[itemsep=0pt]
-			\item comming $soon^{_{TM}}$
+			\item have to concider 2- and more-bit errors... noe clue how to calculate
 		\end{itemize}
 	\end{enumerate}
 	
 	% Solution
 	
 	\subsection{Hamming-Code}
-	\textbf{wo entities have agreed to use the following encoding to transmit characters}
+	\textbf{Two entities have agreed to use the following encoding to transmit characters}
 	\begin{enumerate}[itemsep=0pt]
-		\item \textbf{How many check bits are requigray to correct all 1-bit errors in messages with a length of m bits?}
+		\item \textbf{How many check bits are required to correct all 1-bit errors in messages with a length of m bits?}
 		\begin{itemize}[itemsep=0pt]
-			\item comming $soon^{_{TM}}$
+			\item $m = 2^k - k - 1 $
+			\item $m + 1 = 2^k - k $
+			\item $k = truncate(\log_2(m+\log_2(m))) + 1$
+			\item e.g. you have 1337 bits of data:\\
+			\textcolor{blue}{ $k = trunc(\log_2(1337 + \log_2(1337))) + 1$\\
+			$k = trunc(\log_2(1337 + 10,3848)) + 1 = trunc(\log_2(1347,3848)) + 1$\\
+			$k = trunc(10,3959) + 1 = 10 + 1 = \textbf{11}$}
 		\end{itemize}
 		\item \textbf{A Hamming Code with 4 check bits shall be used in the following.  Create the code words which represent the word HAMMING.}
-		\begin{itemize}[itemsep=0pt]
-			\item comming $soon^{_{TM}}$
+		\begin{itemize}[itemsep=0pt]	
+			\item Parity bit 0 (1): is XOR from Data bits 0, 1, 3, 4, 6 (3,5,7,9,11 $\rightarrow$ see slides) 
+			\item Parity bit 1 (2): is XOR from Data bits 0, 2, 3, 5, 6 (3,6,7,10,11) 
+			\item Parity bit 2 (4): is XOR from Data bits 1, 2, 3 (5,6,7)
+			\item Parity bit 3 (8): is XOR from Data bits 4, 5, 6 (9,10,11)
 		\end{itemize}
+		\begin{tabular}{c|c|ccccccccccc}
+			~ & ~ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+			Letter & binary & $p_0$ & $p_1$ & $d_0$ & $p_2$ & $d_1$ & $d_2$ & $d_3$ & $p_3$ & $d_4$ & $d_5$ & $d_6$ \\ \hline
+			H & \textcolor{blue}{$[1001000]$} & \textcolor{red}{0} & \textcolor{red}{0} & 1 & \textcolor{red}{1} & 0 & 0 & 1 & \textcolor{red}{0} & 0 & 0 & 0 \\
+			A & \textcolor{blue}{$[1000001]$} & \textcolor{red}{0} & \textcolor{red}{1} & 1 & \textcolor{red}{0} & 0 & 0 & 0 & \textcolor{red}{1} & 0 & 0 & 1 \\
+			M & \textcolor{blue}{$[1001101]$} & \textcolor{red}{0} & \textcolor{red}{1} & 1 & \textcolor{red}{1} & 0 & 0 & 1 & \textcolor{red}{0} & 1 & 0 & 1 \\
+			M & \textcolor{blue}{$[1001101]$} & \textcolor{red}{0} & \textcolor{red}{1} & 1 & \textcolor{red}{1} & 0 & 0 & 1 & \textcolor{red}{0} & 1 & 0 & 1 \\
+			I & \textcolor{blue}{$[1001001]$} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & \textcolor{red}{1} & 0 & 0 & 1 & \textcolor{red}{1} & 0 & 0 & 1 \\
+			N & \textcolor{blue}{$[1001110]$} & \textcolor{red}{1} & \textcolor{red}{0} & 1 & \textcolor{red}{1} & 0 & 0 & 1 & \textcolor{red}{0} & 1 & 1 & 0 \\
+			G & \textcolor{blue}{$[1000111]$}  & \textcolor{red}{1} & \textcolor{red}{1} & 1 & \textcolor{red}{0} & 0 & 0 & 0 & \textcolor{red}{1} & 1 & 1 & 1 \\
+		\end{tabular}
+	\\
 		\item \textbf{Consider the following code words have been received:	\\
 		\textcolor{blue}{$[010101000~ 111001000~ 010101001~ 001011000~ 111111100~ 001001100]$} 
 		Decode  this  sequence,  mark  the  blocks  that  contain  an  error,  and  correct  the  errors  if possible.}
