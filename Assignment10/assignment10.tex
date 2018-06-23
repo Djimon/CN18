@@ -39,23 +39,46 @@
 	\begin{enumerate}[label=(\roman*),itemsep=0pt]
 		\item \textbf{What is a collision?}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item  happens when two frames are transmitted simultaneously
+			\item  both frames overlap and the signals are garbled
+			\item  all messages are destroyed
+			\item  frames will be retransmitted after a random time
 		\end{itemize}
+		\includegraphics[width=0.8\linewidth]{collision.png}
 		\item \textbf{What does Carrier Sense mean?}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item  stations can sense channel and tell whether it is busy or not
+			\item  if busy: stations don't start with transmissions
 		\end{itemize}
-		\item \textbf{What does thee term persistence mean?}
+		\item \textbf{What does the term persistence mean?}\\
+		\includegraphics[width=0.75\linewidth]{csma.png}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item 1-persistent CSMA
+			\begin{itemize}[itemsep=0pt]
+				\item  when a station has data to send, it first listens to the channel
+				\item  if channel is busy, station waits until it becomes idle
+				\item  when channel is idle, station transmits a frame
+				\item  if collision happens, station waits a random amout of time and starts all over again
+				\item  1- persostent $\Rightarrow$ station transmits with probability of 1 if channel is idle		
+			\end{itemize}
+			\item Non- persistent CSMA
+			\begin{itemize}[itemsep=0pt]
+				\item  if channel is busy, station waits a random time, repeats algorithm
+			\end{itemize}
+			\item p- persistent CSMA
+			\begin{itemize}[itemsep=0pt]
+				\item  applied in slottet channels (slotted ALOHA)
+				\item  if channel is on idle, station transmits with probability p in current slot and with probability (1-p) it defers until next slot
+				\item  if next slot is on idle, station again transmits with probability p and defers with (1- p) 
+			\end{itemize}		
 		\end{itemize}
 		\item \textbf{Consider a channel with only a few stations that all have a low sending propability. Which type of persistence would be most effective?}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item 1- persistent CSMA, probably
 		\end{itemize}
 		\item \textbf{Consider a channel with a huge number of stations that transmit frequently. Which type of persistence would lead to better channel utilization?}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item p- persistent CSMA, probably
 		\end{itemize}
 	\end{enumerate}
 	
@@ -84,10 +107,23 @@
 
 	
 	\subsection{Collision Detection and Frame Size}
-	\textbf{Consider a 10 MBit/s CSMA/CD LAN with a bus topology of 50 m. The signal propagates with $2 \cdot 10^8$ m/s in the medium. Calculate the upper bound of the collision detection time- Calculate the minimum frame length that is required to detect a collision.}
+	\textbf{Consider a 10 MBit/s CSMA/CD LAN with a bus topology of 50 m. The signal propagates with $2 \cdot 10^8$ m/s in the medium. Calculate the upper bound of the collision detection time. Calculate the minimum frame length that is required to detect a collision.\\}
 	
-	
-	% Solution 
+	Worst case: station A senses a free medium and starts to transmit
+	\begin{itemize}[itemsep=0pt]
+		\item Station B senses a free medium and starts to transmit just at the time the signal from A arrives at B
+		\item Signal from B has to travel through the whole network before A can detect the collision
+		\item Maximum time until collision detection is twice the signal progagation time
+	\end{itemize}
+
+	$t = 2 \cdot \frac{bus~length}{signal speed} = 2 \cdot \frac{50 m}{2 \cdot 10^8 m/s} = 5 \cdot 10^{-7} s$ \\
+	\\
+	To ensure that the stations are able to detect a collision, the frame be at least $t = 5 \cdot 10^{-7}$ seconds on the medium.\\
+	\\
+	$frame length_{min} ~/~ bit~rate > t \Rightarrow frame length_{min} > bit~rate \cdot t\\
+	frame length_{min} > 10Mbps \cdot 5 \cdot 10^{-7}s \\
+	frame length_{min} > 10 \cdot 10^6 bps \cdot 5 \cdot 10^{-7} \\
+	frame length_{min} > 5 bit $
 	
 	\subsection{Multiple Access Effectiveness}
 	\textbf{Consider a bus with ten stations. Construct scenarios where the following Multiple Access strategies are efficient or inefficient, respectively, in terms of medium utilization.}
