@@ -1,0 +1,99 @@
+9.1.++++++++++++++++++++++++++++++++++++++
+
+Consider a host-to-network technology with a sliding window mechanism and a window size of
+W = 7. The frames can have a size of up to 1,500 bytes and the round trip time between two
+hosts is 50 ms. Calculate the maximum data rate that can be achieved. You can assume that
+the sending and receiving of frames can be done in zero-time and that the channel is symmetric.
+
+W = 7 (Wir dürfen 7 Frames verschicken bevor wir das erste ACK erhalten)
+RTT = 50ms (A->B->A)
+Framesize = 1500 byte
+
+(0,1,2,3,4,5,6) Sind die ersten Frames die wir verschicken 
+    -> 7 * (50ms/2) = 175 ms        10500byte
+    -> ACK frame 0 -> 25 ms
+
+  0    50
+A --------------------------------------------------->
+  \    A
+   \  /
+    V/
+B --------------------------------------------------->
+
+Nach 50 ms haben wir wieder die Ausgangssituation. Wir verschicken 7 Frames und bekommen 7 Acks zurück
+Datenrate = (7 * 1500byte)/(50ms)
+
+
+9.2.++++++++++++++++++++++++++++++++++++++
+
+Consider some host-to-network technology where each frame contains a sequence number SEQ
+as well as an acknowledgement number ACK. The acknowledgement number acknowledges all
+frames up to ACK-1. Both numbers are represented by N bits and thus all calculations are
+modulo M = 2^N .
+
+1. How many frames can be sent before at least one acknowledgement has to be received?
+
+    M = 2^N => W = 2^N -1
+
+    -> Ich schicke ACK0 wenn ich noch nichts erhalten habe
+    -> Ich schicke ACK3 wenn ich alles erhalten habe
+
+    Beispiel: Sequenz |0|1|2| |
+    -> Wir lassen eines leer um mehrdeutigkeiten zu vermeiden, sonst wäre die ANtwort auch ACK0 wenn 
+        ich alles erhalten habe
+
+2. Consider an example with M = 8 and window size W = 7. The frames with the sequence
+numbers 5, 6, 7, 0, 1 have been sent from A to B and no acknowledgement has been received
+yet. Which of the remaining sequence numbers may be used by A to sent further frames?
+
+    -> Wir können noch 2 und 3 verschicken und keine 4. Begründung: siehe oben.
+
+3. Which sequence numbers may be used for further frames, if acknowledgements are received
+with:
+(a) ACK = 2
+(b) ACK = 6
+(c) ACK = 5
+List the acknowledged sequence numbers and the window of remaining sequence numbers.
+
+    Hinweis: M und W müssen nicht zusammenhängen!!!
+
+    a) 2, 3, 4, 5, 6, 7, 0
+    b) 6, 7, 0, 1, 2, 3, 4
+    c) 5, 6, 7, 0, 1, 2, 3
+
+9.4.+++++++++++++++++++++++++++++++++++++++
+
+Assume that you know the maximum processing and transmission time between sender and
+receiver. Choose and discuss a simple, adaptive flow control mechanism.
+
+    -> Sender kann berechnen was der Empfänger empfangen kann. Sende entsprechende Pakete.
+        -> Allerdings bei mehr als 2 Geräten funktioniert das nicht mehr!
+        -> Also realitätsfern.
+
+9.5.+++++++++++++++++++++++++++++++++++++++
+
+Assume a geostationary satellite sends frames of 1000 bits over a symmetric channel with a bit
+rate of 1 Mbps. The frame take 270 ms to arrive at the station on earth. Calculate the maximum
+achievable efficiency using a 
+    • Stop-and-Wait protocol
+    • Sliding Window protocol with window size 13
+The acknowledgements have the size of a whole frame.
+
+t = 0ms werden erste Frames verschickt
+t = 271ms kommen erste Frames an          +1 weil 1000bit/1Mbps = 1ms
+t = 272ms wird von der Statio genatwortet
+t = 542ms kommt das ACK an                +271 Weil Antwort äquivalent nach Aufgabenstellung
+
+k Frames können verschickt werden in 542ms bis ein ACK benötigt wird
+Effizienz ist k/542
+
+Effizienz: 1 / 542 ~ 0.18%
+
+           13 / 542 ~ 2.4%
+
+
+
+
+
+
+

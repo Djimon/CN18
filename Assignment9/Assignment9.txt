@@ -1,0 +1,29 @@
+Problem 8.3: Sliding Window - Retransmission Strategies
+List and discuss the advantages and disadvantages of the three retransmission strategies introduced in the lecture.
+
+Pipelining and Go-back-N
+	+ the sender can send many frames at a time
+	+ the sender can be set for a group of frames
+	+ one ACK can acknowledge more than one frame
+	+ higher efficiency
+	- requires buffer
+	- transmitter needs to store the last N packets
+	- scheme is inefficient when there is a large delay &  ahigh data transmission rate
+	- unnecessary retransmission of many error-free packets
+
+Pipelining and Selective Repeat
+	+ fewer retransmissions compared to Go-back-N
+	+ better performance 
+	+ receiver re-achnowledges already received packets with certain sequence numbers below the current window case, if the receiver does not do so, then the sender's window would not move forward 
+	- more complexity at sender and receiver
+	- each frame must be acknowledged individually
+		=> no cumulative acknowledgements
+	- receiver may receive frames out of sequence 
+
+Pipelining and Selective Reject (also: Selective Retransmission)
+	+ minimizes the amount of retransmission
+	- receiver is more complex
+		=> must maintain a buffer that is big enough to save post-SREJ frames until frame in error is retransmitted
+		=> Extra logic for reinserting retransmitted frame in proper sequence
+	- sender is more complex
+		=> extra logic for sending a frame out of sequence
