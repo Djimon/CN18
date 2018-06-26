@@ -35,7 +35,7 @@
 \begin{document}	 
 	\maketitle	 %Some Vodoo-magic
 	
-	\subsection{CSMA/CD}
+	\subsection{CSMA/CD} (\textbf{C}arrier-\textbf{S}ense-\textbf{M}...\textbf{A}... / \textbf{C}ollision-\textbf{D}etection)
 	\begin{enumerate}[label=(\roman*),itemsep=0pt]
 		\item \textbf{What is a collision?}
 		\begin{itemize}[itemsep=0pt]
@@ -49,6 +49,7 @@
 		\begin{itemize}[itemsep=0pt]
 			\item  stations can sense channel and tell whether it is busy or not
 			\item  if busy: stations don't start with transmissions
+			\item \textcolor{red}{happens when a new package comes from a highe layer}
 		\end{itemize}
 		\item \textbf{What does the term persistence mean?}\\
 		\includegraphics[width=0.75\linewidth]{csma.png}
@@ -59,32 +60,38 @@
 				\item  if channel is busy, station waits until it becomes idle
 				\item  when channel is idle, station transmits a frame
 				\item  if collision happens, station waits a random amout of time and starts all over again
-				\item  1- persostent $\Rightarrow$ station transmits with probability of 1 if channel is idle		
+				\item  1- persistent $\Rightarrow$ station transmits with probability of 1 if channel is idle	
+				\item \textcolor{red}{collision happens, when 2 1-persistant packages come at the exact same time} 	
 			\end{itemize}
-			\item Non- persistent CSMA
+			\item Non-persistent CSMA
 			\begin{itemize}[itemsep=0pt]
 				\item  if channel is busy, station waits a random time, repeats algorithm
+				\item \textcolor{red}{longer dely times} 
+				\item \textcolor{red}{eventually also uses a random time if chanel is idle, to overcome a collision of  2 packages at the same time, when chanel is free} 
 			\end{itemize}
-			\item p- persistent CSMA
+			\item p-persistent CSMA \textcolor{red}{(generalization of the other methods)} 
 			\begin{itemize}[itemsep=0pt]
 				\item  applied in slottet channels (slotted ALOHA)
 				\item  if channel is on idle, station transmits with probability p in current slot and with probability (1-p) it defers until next slot
-				\item  if next slot is on idle, station again transmits with probability p and defers with (1- p) 
+				\item  if next slot is on idle, station again transmits with probability p and defers with (1- p)
 			\end{itemize}		
 		\end{itemize}
 		\item \textbf{Consider a channel with only a few stations that all have a low sending propability. Which type of persistence would be most effective?}
 		\begin{itemize}[itemsep=0pt]
-			\item 1- persistent CSMA, probably
+			\item 1- persistent CSMA
+			\item \textcolor{red}{probability of high traffic is low and we don't have any delay in 1-persistant} 
 		\end{itemize}
 		\item \textbf{Consider a channel with a huge number of stations that transmit frequently. Which type of persistence would lead to better channel utilization?}
 		\begin{itemize}[itemsep=0pt]
-			\item p- persistent CSMA, probably
+			\item p- persistent CSMA
+			\item \textcolor{red}{high chance of collision, best choice between avoidence and low delay } 
 		\end{itemize}
 	\end{enumerate}
 	
 	\subsection{Binary Exponential Backoff}
-	\textbf{In the Ethernet specification (IEEE  802.3) a collision causes the Binary Exponential Backoff algorithm to start, in order to resolve the conflict. The algorithm is specified in the specificationas follows:
-	\textit{The delay is an integral multiple of the slot time. The number of slot times to delay before the n-th retransmission attempt is chosen as a uniformly distributed random integer r in the range	$0 <= r <= 2^K$  where $K = min(n, 10)$.} In an IEEE 802.3 LAN with 4 stations the following transmission attempts (slots) are given: \\
+	\textbf{In the Ethernet specification (IEEE  802.3) a collision causes the Binary Exponential Backoff algorithm to start, in order to resolve the conflict. The algorithm is specified in the specificationas follows:\\ \\
+	\textit{The delay is an integral multiple of the slot time. The number of slot times to delay before the n-th retransmission attempt is chosen as a uniformly distributed random integer r in the range	$0 <= r <= 2^K$  where $K = min(n, 10)$.}\\ \\
+	In an IEEE 802.3 LAN with 4 stations the following transmission attempts (slots) are given: \\
 	\textcolor{blue}{Station A: 1, 3, 12 |  Station B: 1, 7, 8 | Station C: 5 | Station D: 5 }\\
 	Frames are buffered till the transmission was successful. The stations are using a function for generating random numbers for the waiting time, which produces values between 0 and 16383. Modulo division is used for restricting the values to the current interval - e.g. after the second conflict it is divided modulo 4, after the third collision modulo 8, etc. The stations’ sequences of random values are given as follows (not all of them are needed here):
 	\begin{itemize}[itemsep=0pt]
@@ -97,12 +104,13 @@
 
 	\begin{table}[h!]
 		\begin{tabular}{|l|*{20}{p{0.3cm}|}} \hline
-			\textbf{Slot} &   1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 \\ \hline
-			Station A &    &   &   &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &  \\ \hline
-			Station B &    &   &   &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &  \\ \hline
-			Station C &    &   &   &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &  \\ \hline
-			Station D &    &   &   &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &  \\ \hline
+			\textbf{Slot} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 \\ \hline
+			Station A & \textcolor{red}{X} & \textcolor{green}{S} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{green}{S} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{green}{S} &   &   &   &   &  \\ \hline
+			Station  B & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{green}{S} & \textcolor{green}{S} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{green}{S} &   &   &   &   &   &   &   &   &  \\ \hline
+			Station  C &   &   &   &   & \textcolor{red}{X} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{green}{S} &   &   &   &   &   &   &   &   &   &  \\ \hline
+			Station  D &   &   &   &   & \textcolor{red}{X} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{red}{X} & \textcolor{yellow}{W} & \textcolor{yellow}{W} & \textcolor{green}{S} &   &   &   &  \\ \hline
 		\end{tabular}
+	\caption{X..busy, S..send, W..wait, a..nothing}
 	\end{table}
 
 	
@@ -130,15 +138,20 @@
 		\begin{enumerate}[label=(\roman*),itemsep=0pt]
 		\item \textbf{TDMA}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item \textcolor{red}{each user (station) gets a fixed time slot $\Rightarrow$ periodic transmission, traffic needs to be estimated}
+			\item \textcolor{red}{usefull if all stations sends data at mostly any time}
+			\item \textcolor{red}{if one station sends data and another 2 doesn't the cannel has only a efficency of 1/3}
 		\end{itemize}
 		\item \textbf{CSMA/CD}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item \textcolor{red}{performance decreases with number of buy stations, also delay increases, because of higher probability of collision}
+			\item \textcolor{red}{usefull when one station sends more than the other stations (=Internet: one user is downloading, 100 other doing nothing)}
 		\end{itemize}
 		\item \textbf{Bitmap Protocol}
 		\begin{itemize}[itemsep=0pt]
-			\item 
+			\item \textcolor{red}{Each station reserves the amoung of space it needs}
+			\item \textcolor{red}{calculates best allocation and orderes the stations, after calculation phase it has 100 \% efficency}
+			\item \textcolor{red}{overhead from reservation, so if the dataframes are really short the perfromance decreases}
 		\end{itemize}
 	\end{enumerate}
 	
