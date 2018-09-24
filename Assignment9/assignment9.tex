@@ -1,0 +1,103 @@
+%\documentclass{article}
+\documentclass[a4paper,12pt]{article}
+% Seitenränder in schön für Steven
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{titling}
+\usepackage{setspace}
+
+
+% Schusterjungen und Hurenkinder bestrafen
+\clubpenalty50000
+\widowpenalty50000
+\displaywidowpenalty=50000
+
+% Buchstaben mit kringel drum: %
+\newcommand*\mycirc[1]{%
+	\begin{tikzpicture}[baseline=(C.base)]
+	\node[draw,circle,inner sep=1pt](C) {#1};
+	\end{tikzpicture}}
+
+\newcommand*\red[1]{\textcolor{red}{#1}}
+
+\author{Benedict Hans, Christoph Dollase, Steven Te\ss endorf}
+\setlength{\droptitle}{-5em} % set the title to the top of the page
+
+% ==========================
+% ===== START HERE!! =======
+% ==========================
+\title{ \textbf{Problem Sheet 9}}
+\setcounter{section}{9} % Nummer des Aufgabenblattes
+
+\begin{document}	 
+	\maketitle	 %Some Vodoo-magic
+	
+	\subsection{?}
+	
+	\subsection{?}
+	
+	\subsection{Sliding Window - Tetransmission Strategies}
+	\textbf{List and discuss the advantages and disadvantages of the three retransmission strategies introduced in the lecture.}
+	
+	\begin{table}[h!]
+		\caption{Pipelining and Go-back-N}
+		\begin{tabular}{p{0.45\linewidth}|p{0.45\linewidth}}
+			advantages & disadvantages \\ \hline
+			$\bullet$ sender can send many frames at a time & $\bullet$ requires buffer \\ 
+			$\bullet$ sender can be set for a groub of frames & $\bullet$ transmitter needs to store the last N packets\\
+			$\bullet$ one ACK can acknowledge mire than one frame & $\bullet$ scheme is inefficient when there is a large delay/ high transmission rate\\
+			$\bullet$ higher frequency & $\bullet$ unnecessary retransmission on many error-free packets \\			
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[h!]
+		\caption{Pipelining and Selectvie Repeat}
+		\begin{tabular}{p{0.45\linewidth}|p{0.45\linewidth}}
+			advantages & disadvantages \\ \hline
+			$\bullet$ fewer retransmisions &  $\bullet$ more complex\\
+			$\bullet$ better performance & $\bullet$ each frame must be acknowledged individually\\
+			$\bullet$ receiver re-achnowledges already received packets with certain sequence numbers below the current window case, if the receiver does not do so, then the sender's window would not move forward & $\bullet$ receiver may receive frames out of seuqence  \red{why?} \\
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[h!]
+		\caption{Pipelining and Selective Reject (''Selective Retransmission"}
+		\begin{tabular}{p{0.45\linewidth}|p{0.45\linewidth}}
+			advantages & disadvantages \\ \hline
+			$\bullet$ minimized retransmissions &  $\bullet$ needs extra logic for reinserting retransmitted frame in proper sequence\\
+		\end{tabular}
+	\end{table}
+
+
+	
+\end{document}
+
+% Hier nach passiert nichts mehr, daher nutzen wir das als kleines Cheat-Sheet ;)
+% ===============================================================================
+
+% Aufzählungen (auch merhstufig):
+\begin{itemize}[itemsep=0pt]
+	\item 
+\end{itemize}
+
+%Bilder eifnügen:
+\begin{figure}[h!] %h! sorgt dafür dass das Bild möglichst nicht woanders hingeschoben wird
+	%Erklärung: [width=0.5\linewidth] -> Bild ist maximal so breit wie die Hälfte des Schriftbildes
+	\includegraphics[width=0.5\linewidth]{Bildname.jpg} 
+	\caption{Bildunterschrift}
+\end{figure}
+
+%Tabelle einfügen:
+\begin{table}[h!] %h! sorgt dafür dass die Tabelle möglichst nicht woanders hingeschoben wird
+	\caption{Tabellenüberschrift}
+	%hinter {tabular}: Anzahl Spalten (c=center, l=linksbündig, r=rechtsbündig, | Spaltenstriche)
+	\begin{tabular}{|c|c|c} 
+		A & B & C  \\ % \\ = return (neue zeile)
+		\hline % horinzontale Linie
+		0 & 1 & 2
+	\end{tabular}
+\end{table}
